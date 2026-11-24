@@ -1,0 +1,52 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/log-style}[2026/11/24 B-tree laboratory report style]
+\RequirePackage{iftex}
+\ifPDFTeX
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T2A]{fontenc}
+\else
+  \RequirePackage{fontspec}
+  \IfFontExistsTF{Times New Roman}{
+    \setmainfont{Times New Roman}
+    \setsansfont{Arial}
+    \setmonofont{Consolas}
+  }{
+    \setmainfont{CMU Serif}
+    \setsansfont{CMU Sans Serif}
+    \setmonofont{CMU Typewriter Text}
+  }
+\fi
+\RequirePackage[english,russian]{babel}
+\RequirePackage[a4paper,left=25mm,right=25mm,top=22mm,bottom=22mm]{geometry}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage[table]{xcolor}
+\RequirePackage{array,longtable,tabularx}
+\RequirePackage{enumitem,listings,csquotes,hyperref}
+\hypersetup{unicode=true,colorlinks=true,linkcolor=black,urlcolor=blue!55!black,
+  pdftitle={Лабораторная работа 1. Словарь на B-дереве. Шаблон},
+  pdfauthor={Якунченков Кирилл Андреевич}}
+\urlstyle{same}
+\frenchspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.2}
+\setlist{nosep,topsep=4pt,leftmargin=1.6em}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\Field}[1]{\textcolor{black!60}{\textit{[#1]}}}
+\newcommand{\TemplateNote}[1]{\par\medskip\noindent
+  \fcolorbox{black!25}{black!3}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\small #1}}\par\medskip}
+\newcommand{\CWHeader}[1]{\section*{#1}}
+\newcommand{\CWProblem}[1]{\par\textbf{Задача: }#1}
+\newcommand{\DayRecord}[4]{\par\noindent\begin{minipage}{\linewidth}\subsection{#1}
+  \textbf{Образец плановой записи.} #2
+  \par\textbf{Планируемые средства.} #3
+  \par\textbf{Что сохранить.} #4
+  \par\textbf{Фактическое выполнение.} \Field{дата, действия и отклонения от плана}
+  \par\textbf{Фактический результат.} \Field{результат без предположений}
+  \par\textbf{Подтверждение.} \Field{команда, версия, коммит, тест или лог}
+  \par\textbf{Следующий шаг.} \Field{что осталось сделать}\end{minipage}\par\medskip}
+\lstset{basicstyle=\small\ttfamily,breaklines=true,columns=fullflexible,
+  keepspaces=true,showstringspaces=false,frame=single,rulecolor=\color{black!20},
+  tabsize=4,numbers=none}
